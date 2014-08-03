@@ -6,7 +6,7 @@ class P09 {
    pack(List(List()),ls).reverse
  }
   
- private def pack[A](result: List[List[A]], ls: List[A]): List[List[A]] = {
+ protected def pack[A](result: List[List[A]], ls: List[A]): List[List[A]] = {
 		if(ls == Nil) result
 		else if(result.head.isEmpty) pack(List(List(ls.head)),ls.tail)
 		else if(ls.head == result.head.head) {

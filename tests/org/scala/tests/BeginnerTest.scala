@@ -11,6 +11,7 @@ import org.scalaproblems.basic.P06
 import org.scalaproblems.basic.P07
 import org.scalaproblems.basic.P08
 import org.scalaproblems.basic.P09
+import org.scalaproblems.basic.P10
 
 class BeginnerTest extends FlatSpec with Matchers{
   "P01 last" should "find the last element of a list" in {
@@ -88,7 +89,11 @@ class BeginnerTest extends FlatSpec with Matchers{
     p09.pack(xs) should be (List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e)))
   }
   
-  
+ "P10" should " Run-length encoding of a list." in {
+   val xs = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+   val p10 = new P10()
+   p10.encode(xs) should be (List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e)))
+ } 
   
 
 }

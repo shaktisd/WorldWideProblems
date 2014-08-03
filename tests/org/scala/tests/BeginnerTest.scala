@@ -9,6 +9,8 @@ import org.scalaproblems.basic.P04
 import org.scalaproblems.basic.P05
 import org.scalaproblems.basic.P06
 import org.scalaproblems.basic.P07
+import org.scalaproblems.basic.P08
+import org.scalaproblems.basic.P09
 
 class BeginnerTest extends FlatSpec with Matchers{
   "P01 last" should "find the last element of a list" in {
@@ -71,15 +73,22 @@ class BeginnerTest extends FlatSpec with Matchers{
     p07.flat(xs) should be (List(1,1,2,3,5,8))
   }
   
-  "Sample" should "run" in {
-    val xs = List(1,2,3,4,5)
-    xs.foldLeft(0)((a,b) => a + b) should be (15)
-    
+  "P08" should "compress duplicate consequtive list elements" in {
+    val xs = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+    val p08 = new P08()
+    p08.compressR(xs) should be (List('a, 'b, 'c, 'a, 'd, 'e))
+    p08.compressL(xs) should be (List('a, 'b, 'c, 'a, 'd, 'e))
+  }
+  
+  "P09" should " pack consequtive duplicate elements into a list" in {
+    val xs = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+    val p09 = new P09()
+    val packed  = p09.pack(xs)
+    Console.print(packed)
+    p09.pack(xs) should be (List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e)))
   }
   
   
-
-
-
+  
 
 }

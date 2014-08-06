@@ -52,5 +52,7 @@ object Test3 {
 
   println(next_prime(fs, 4))                      //> 5
   println(next_prime(fs, 8))                      //> 11
-
+  
+  
+  
 }

@@ -39,15 +39,20 @@ object PrimeNumber extends App{
     
     def primeR(result: List[Long],index: Int):List[Long] = {
       val lastPrimeNumber = result(index)
-      if((lastPrimeNumber * lastPrimeNumber) > max ) result
+      if((lastPrimeNumber * lastPrimeNumber) > max || index == result.size -1) result
       else primeR(result.filter(x => myFilter(x,lastPrimeNumber)), index+1)
     }
     
+    def primeRR(ls :List[Long],result: List[Long],index: Int):List[Long] = {
+      val lastPrimeNumber = result(index)
+      if((lastPrimeNumber * lastPrimeNumber) > max || index == result.size -1) result
+      else primeR(ls.filter(x => myFilter(x,lastPrimeNumber)), index+1)
+    }
     
     if(ls == Nil){
     	primeR(xs,0)  
     }else {
-        primeR(ls,0)
+      primeR(ls,0)
     }
     
   }
@@ -59,17 +64,22 @@ object PrimeNumber extends App{
     println("firstIterationLimit " + firstIterationLimit)
     val primeListTillFirstIterationLimit = getAllPrimesUsingSieveOfEratosthenes(firstIterationLimit,Nil)
     println("primeListTillFirstIterationLimit " + primeListTillFirstIterationLimit.size)
-    val tenDigitNumbers = (Math.pow(10, sizeOfDigit).toLong until (Math.pow(10, sizeOfDigit+1)-1).toLong)
-    val finalPrimeList = getAllPrimesUsingSieveOfEratosthenes((Math.pow(10, sizeOfDigit+1)-1).toLong,primeListTillFirstIterationLimit)
-    println(finalPrimeList)
-    /*var i = Math.pow(10, sizeOfDigit).toLong
-    var noOfResults = 0
-    while(i < (Math.pow(10, sizeOfDigit+1)-1) && noOfResults < n) {
-    	if(isPrime(i,primeListTillFirstIterationLimit)) {println(i);noOfResults+=1}
-    	i+=1
-    }*/
+    val tenDigitNumbers = ((Math.pow(10, sizeOfDigit).toLong , (Math.pow(10, sizeOfDigit+1)-1).toLong))
+    getPrimeNumbers(tenDigitNumbers,primeListTillFirstIterationLimit,5)
+    //val finalPrimeList = getAllPrimesUsingSieveOfEratosthenes((Math.pow(10, sizeOfDigit+1)-1).toLong,primeListTillFirstIterationLimit)
+    //println(finalPrimeList)
   }
   
-  calculatefirstNPrimeNumbersOfAGivenSize(5,5)
+  def getPrimeNumbers(numbers: (Long,Long), previousPrimeNumbers: List[Long], countOfPrimesRequired: Int){
+    //10000000000,99999999999
+      var i = numbers._1
+      var count = 0
+      while(i < numbers._2 && count < countOfPrimesRequired){
+        if(previousPrimeNumbers.forall(j => i%j != 0)) {println(" PRIME " + i); count+=1}
+        i += 1
+      }
+  }
+  
+  calculatefirstNPrimeNumbersOfAGivenSize(5,12)
           
 }

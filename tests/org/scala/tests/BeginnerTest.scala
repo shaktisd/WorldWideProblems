@@ -93,7 +93,13 @@ class BeginnerTest extends FlatSpec with Matchers{
    val xs = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
    val p10 = new P10()
    p10.encode(xs) should be (List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e)))
- } 
+ }
+ 
+ "P11" should " calculate run length encoding of a list such that only elements having duplicates is shown as tuples" in {
+   val xs = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+   //val p11 = new P11()
+   //p11.encode(xs) should be ( List((4,'a), 'b, (2,'c), (2,'a), 'd, (4,'e)))
+ }
   
 
 }

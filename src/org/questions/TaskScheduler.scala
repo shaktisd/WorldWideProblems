@@ -18,12 +18,11 @@ For this example, program should return false.
  * 
  */
 object TaskScheduler extends App{
-    val servers = List(6,2,1)
-	val tasks = List(6,2,2)
+    val servers = List(6)
+	  val tasks = List(1)
   
 	def canScheduleTasksOnServers(s1: List[Int],t: List[Int]): Boolean = {
 	  def schedule(currentTask: Int,remainingTasks: List[Int], currentServers: List[Int]):Boolean = {
-	      println(" currentTask " + currentTask + " remaining task " + remainingTasks + " current Servers " + currentServers)
 		  if(remainingTasks == Nil) currentServers.exists(p => p-currentTask >= 0) 
 		  else if ((currentServers.forall(p => p-currentTask < 0))) false 
 		  else {
